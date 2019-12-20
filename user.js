@@ -10,8 +10,4 @@ const userSchema = new Schema({
     Password : String,
 })
 
-var User = mongoose.model('User', userSchema);// trans to model, model name is user
-
-userSchema.plugin(db.autoIncrement.plugin, { model: User, field: 'id', startAt:1 });
-
-module.exports = db.connection.model(User, userSchema);
+module.exports = mongoose.model('User', userSchema);
