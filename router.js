@@ -1,11 +1,11 @@
 'use strict';
-const express    = require('express');        
+const express  = require('express');        
 const router = express.Router();     
 
-const User     = require('./user');
+const User = require('./user');
 
 router.get('/', (req, res) => {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.json({ message: 'server working' });   
 });
 
 router.post('/user', (req, res) => {

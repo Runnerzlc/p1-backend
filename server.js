@@ -7,7 +7,7 @@ const app        = express();
 const router = require('./router');
 
 const mongoose   = require('mongoose');
-mongoose.connect('mongodb://admin:admin@ds056789.mlab.com:56789/dev');
+mongoose.connect("mongodb+srv://cluster0-5dbqp.mongodb.net/test");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,7 +17,7 @@ const port = process.env.PORT || 8888;
 app.use('/api', router);
 
 app.get('/', (req, res) => {
-                res.json({ message: 'hooray! welcome to our home!' });   
+                res.json({ message: 'hooray! welcome to server home' });   
 });
 
 app.listen(port, () => {
