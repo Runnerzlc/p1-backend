@@ -8,6 +8,7 @@ const router = require('./router');
 
 const mongoose   = require('mongoose');
 mongoose.connect("mongodb+srv://cluster0-5dbqp.mongodb.net/test");
+//mongodb+srv://admin:<password>@cluster0-5dbqp.mongodb.net/test?retryWrites=true&w=majority
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,6 +22,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-                console.log('Magic happens on port ' + port)}
+                console.log('hello' + port)}
 );
 

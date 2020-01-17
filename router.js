@@ -12,7 +12,7 @@ router.post('/user', (req, res) => {
         var user = new User();      
         user.FirstName = req.body.FirstName;
         user.LastName = req.body.LastName;   
-        user.Sex = req.body.Sex;
+        user.gender = req.body.gender;
         user.Age = req.body.Age;
         user.Password = req.body.Password;
         user.save(  err => {
@@ -23,7 +23,7 @@ router.post('/user', (req, res) => {
         });
         
     });
-
+// get all users
 router.get('/users', (req, res) => {
         User.find((err, users) => {
             if (err) {
@@ -50,7 +50,7 @@ router.put('/user/id', (req, res) => {
             }
             user.FirstName = req.body.FirstName;
             user.LastName = req.body.LastName;
-            bear.Sex = req.body.Sex;
+            bear.gender = req.body.gender;
             bear.Age = req.body.Age;
             user.Password = req.body.Password;
             user.save(  err => {
@@ -62,7 +62,7 @@ router.put('/user/id', (req, res) => {
 
         });
     });
-
+//delete user
 router.delete('/user/:idx', (req, res) => {
         User.remove({
             _id: req.params.user_id
