@@ -46,8 +46,8 @@ router.get('/user/:id', (req, res) => {
         });
         console.log("get one user");
     });
-
-router.put('/user/id', (req, res) => {
+//edit user
+router.put('/user/:id', (req, res) => {
         User.findById(req.params.user_id, (err, user) => {
 
             if (err) {
@@ -66,11 +66,12 @@ router.put('/user/id', (req, res) => {
             });
 
         });
+        console.log("request edit user")
     });
 //delete user
 router.delete('/user/:id', (req, res) => {
-        let id = req.params._id
-        User.deleteOne(id, (err, user) => {
+        //let id = req.params._id
+        User.deleteOne(req.params.user_id, (err, user) => {
             if (err) {
                 res.send(err);
             }
