@@ -1,20 +1,23 @@
 'use strict';
 const express  = require('express');        
 const router = express.Router();     
+const cors = require("cors");
 
 const User = require('./user');
+
+router.all("*", cors());
 
 router.get('/', (req, res) => {
     res.json({ message: 'server working' });   
 });
-
+//create user
 router.post('/user', (req, res) => {
         var user = new User();      
-        user.FirstName = req.body.FirstName;
-        user.LastName = req.body.LastName;   
+        user.firstName = req.body.firstName;
+        user.lastName = req.body.lastName;   
         user.gender = req.body.gender;
-        user.Age = req.body.Age;
-        user.Password = req.body.Password;
+        user.age = req.body.age;
+        user.password = req.body.password;
         user.save(  err => {
             if (err) {
                 res.status(501).send(err);
@@ -31,6 +34,7 @@ router.get('/users', (req, res) => {
             }
             res.status(200).json(users);
         });
+        console.log("request get all users");
     });
 
 router.get('/user/:id', (req, res) => {
@@ -40,6 +44,7 @@ router.get('/user/:id', (req, res) => {
             }
             res.json(user);
         });
+        console.log("get one user");
     });
 
 router.put('/user/id', (req, res) => {
@@ -48,11 +53,11 @@ router.put('/user/id', (req, res) => {
             if (err) {
                 res.send(err);
             }
-            user.FirstName = req.body.FirstName;
-            user.LastName = req.body.LastName;
-            bear.gender = req.body.gender;
-            bear.Age = req.body.Age;
-            user.Password = req.body.Password;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;   
+            user.gender = req.body.gender;
+            user.age = req.body.age;
+            user.password = req.body.password;
             user.save(  err => {
                 if (err) {
                     res.status(501).send(err);
@@ -63,15 +68,19 @@ router.put('/user/id', (req, res) => {
         });
     });
 //delete user
-router.delete('/user/:idx', (req, res) => {
-        User.remove({
-            _id: req.params.user_id
-        }, (err, user) => {
+router.delete('/user/:id', (req, res) => {
+        let id = req.params._id
+        User.deleteOne(id, (err, user) => {
             if (err) {
                 res.send(err);
             }
+            // else{
+            //     res.json(user)
+            // }
+            //else is for test
             res.json({ message: 'Successfully deleted' });
         });
+        console.log("request delete user")
     });
 
 module.exports = router;
