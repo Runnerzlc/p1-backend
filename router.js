@@ -48,8 +48,7 @@ router.get('/user/:id', (req, res) => {
     });
 //edit user
 router.put('/user/:id', (req, res) => {
-        User.findById(req.params.user_id, (err, user) => {
-
+        User.findById(req.params.id, (err, user) => {
             if (err) {
                 res.send(err);
             }
@@ -62,7 +61,7 @@ router.put('/user/:id', (req, res) => {
                 if (err) {
                     res.status(501).send(err);
                 };
-                res.status(200).json({ message: 'user created!' });
+                res.status(200).json({ message: 'user edit!' });
             });
 
         });
@@ -71,7 +70,9 @@ router.put('/user/:id', (req, res) => {
 //delete user
 router.delete('/user/:id', (req, res) => {
         //let id = req.params._id
-        User.deleteOne(req.params.user_id, (err, user) => {
+        User.deleteOne({
+            _id: req.params.id, 
+        }, (err, user) => {
             if (err) {
                 res.send(err);
             }
@@ -80,6 +81,7 @@ router.delete('/user/:id', (req, res) => {
             // }
             //else is for test
             res.json({ message: 'Successfully deleted' });
+            
         });
         console.log("request delete user")
     });
