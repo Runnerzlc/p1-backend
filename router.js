@@ -38,7 +38,7 @@ router.get('/users', (req, res) => {
     });
 
 router.get('/user/:id', (req, res) => {
-        User.findById(req.params.user_id, (err, user) => {
+        User.findById(req.params.id, (err, user) => {
             if (err) {
                 res.send(err);
             }
